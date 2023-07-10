@@ -50,3 +50,30 @@ autovalores_pad<-pca_pad_result$sdev
 autovalores1_pad<<-c(autovalores_pad[-1],1)
 biggest_drop_pad<-which.max(autovalores_pad/autovalores1_pad)
 biggest_drop_pad
+
+
+#### By the Rule of Thumb we select the 2 first PCs. By the PCA of the standardized variables the 2 first PCs explain:
+print(summary_pca$importance["Cumulative Proportion","PC2"])
+##### 0.09503 of the variance.
+
+#### b)
+# Regressing PC1 on the 16 anomaly factors:
+PC1 <- summary_pca$x[,'PC1']
+PC1_factors <- cbind(PC1, returns[,2:17])
+
+rgrss_pc1_factors <- lm(PC1 ~ ., data = PC1_factors)
+summary(rgrss_pc1_factors)
+
+#Regressing PC2 on the 16 factors:
+PC2 <- summary_pca$x[,'PC2']
+PC2_factors <- cbind(PC2, returns[,2:17])
+
+rgrss_pc2_factors <- lm(PC2 ~ ., data = PC2_factors)
+summary(rgrss_pc2_factors)
+# How they relate? The R² and adj. R² of the PC1 regression is 0.954 and 0.9516, and for 
+# the PC2 regression they are 0.6353 and 0.6164. So the anomaly factors contain almost all
+# of the information of the first PC. The R²s are lower on the PC2 regression, but still are considerably high.
+# The only anomaly factor that has a p-value lower than 0.001 in both regressions is the Market (MKT) factor.
+
+
+0.6353,	Adjusted R-squared:  0.6164 
