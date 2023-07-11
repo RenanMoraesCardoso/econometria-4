@@ -53,8 +53,13 @@ autovalores1_pad<<-c(autovalores_pad[-1],1)
 biggest_drop_pad<-which.max(autovalores_pad/autovalores1_pad)
 biggest_drop_pad
 
-############
+# Pela Rule of Thumb selecionamos os 2 primeiros Componentes Principais.
+# Pelo PCA usando as variáveis padronizadas, os 2 primeiros PCs explicam:
+print(summary_pca$importance["Cumulative Proportion","PC2"])
+##### 0.09503 da variância.
+############ 
 
+## 1b)
 
 pc1<-pca_pad_result$x[,1]
 dados<-data.frame(pc1, scale(returns[,2:17]))
