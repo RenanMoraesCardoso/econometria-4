@@ -74,3 +74,5 @@ summary(rgrss_pc2_factors)
 # the PC2 regression they are 0.6353 and 0.6164. So the anomaly factors contain almost all
 # of the information of the first PC. The R²s are lower on the PC2 regression, but still are considerably high.
 # The only anomaly factor that has a p-value lower than 0.001 in both regressions is the Market (MKT) factor.
+# This can be interpreted buy the fact that the principal compenents are a linear combination of the returns
+# of all firms, so makes sense the stock market return providing a good fit.
